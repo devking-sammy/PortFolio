@@ -16,919 +16,38 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="shortcut icon" href="./images/Main-Logo.png" type="image/x-icon" />
-    <style>
-      /* Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Poppins", sans-serif;
-        background: #0a0a0a;
-        color: #fff;
-        scroll-behavior: smooth;
-      }
-
-      /* === NAVBAR BASE === */
-header {
-  width: 100%;
-  padding: 20px 50px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.4s ease;
-}
-
-header.transparent {
-  background: transparent;
-}
-
-header.scrolled {
-  background: rgba(10, 10, 10, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-header nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #fff;
-  position: relative;
-  padding-bottom: 5px;
-  transition: color 0.3s ease;
-}
-
-/* Underline Effect */
-header nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-  background: #00ffff;
-  transition: width 0.4s ease;
-  box-shadow: 0 0 8px #00ffff;
-}
-
-header nav a.active::after {
-  width: 100%;
-  animation: glowBorder 1s ease infinite alternate;
-}
-
-header nav a:hover {
-  color: #00ffff;
-}
-
-@keyframes glowBorder {
-  from {
-    box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
-  }
-  to {
-    box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
-  }
-}
-
-/* === HAMBURGER MENU === */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 18px;
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  background: #fff;
-  height: 3px;
-  border-radius: 5px;
-  transition: all 0.4s ease;
-}
-
-/* Hamburger Animation */
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-/* === MOBILE MENU === */
-@media (max-width: 900px) {
-  header {
-    padding: 15px 25px;
-  }
-
-  nav {
-    position: fixed;
-    top: 70px;  
-    right: -100%;
-    width: 50%;
-    height: calc(100vh - 70px);
-    background: rgba(0, 0, 0, 0.233);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    transition: right 0.4s ease;
-    border-left: 2px solid #00ffff;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  }
-
-  nav.show {
-    right: 0;
-  }
-
-  nav a {
-    font-size: 1.2rem;
-    margin: 10px 0;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-}
-
-
-      /* Hero Section */
-      .hero-section {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
-          url("./images/bg15.png") no-repeat center center/cover;
-
-        position: relative;
-        padding: 0 20px;
-        color: #fff;
-        opacity: 0;
-        animation: fadeSlide 1.5s ease forwards;
-      }
-
-      .hero-section h1 {
-        font-size: 3rem;
-        margin-bottom: 15px;
-      }
-
-      /* Techy Highlight Style */
-      .highlight {
-        font-family: "Orbitron", sans-serif;
-        font-weight: 700;
-        color: #00ffff;
-        letter-spacing: 2px;
-        text-shadow: 0 0 5px #00ffff, 0 0 5px #00ffff, 0 0 5px #00ffff;
-        animation: glowPulse 2s infinite alternate;
-      }
-
-      @keyframes glowPulse {
-        from {
-          text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
-        }
-        to {
-          text-shadow: 0 0 5px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
-        }
-      }
-
-      .hero-section p {
-        font-size: 1.2rem;
-        margin-bottom: 25px;
-        color: #bbb;
-      }
-
-      .social-icons {
-        margin-top: 15px;
-      }
-
-      .social-icons a {
-        color: #fff;
-        margin: 0 10px;
-        font-size: 1.5rem;
-        transition: transform 0.3s ease, color 0.3s ease;
-      }
-
-      .social-icons a:hover {
-        transform: translateY(-5px);
-        color: #00ffff;
-      }
-
-      /* Scroll Down Indicator */
-      .scroll-down {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        color: #fff;
-        font-size: 0.9rem;
-      }
-
-      .scroll-down span {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-        color: #aaa;
-      }
-
-      .scroll-down i {
-        font-size: 1.5rem;
-        animation: bounce 1.5s infinite;
-        color: #00ffff;
-        cursor: pointer;
-      }
-
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(8px);
-        }
-      }
-
-      /* Sections */
-      section {
-        min-height: 100vh;
-        padding: 80px 50px;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s ease;
-      }
-
-      section.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      section.fade-in {
-        animation: fadeSlide 0.8s ease forwards;
-      }
-
-      @keyframes fadeSlide {
-        0% {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      #about {
-        background: #111;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #projects {
-        background: #141414;
-      }
-      #contact {
-        background: #1a1a1a;
-      }
-
-      /* About Section */
-      .about-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 50px;
-        max-width: 1200px;
-        width: 100%;
-      }
-
-      .about-leftside {
-        flex: 1 1 350px;
-        display: flex;
-        justify-content: center;
-      }
-
-      .about-img-box {
-        position: relative;
-        width: 300px;
-        height: 380px;
-        border: 4px solid #00ffff;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-      }
-
-      .about-img-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .about-img-box:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 35px rgba(0, 255, 255, 0.8);
-      }
-
-      .about-rightside {
-        flex: 1 1 500px;
-      }
-
-      .about-rightside h2 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-      }
-
-      .about-rightside p {
-        color: #bbb;
-        margin-bottom: 20px;
-        line-height: 1.6;
-      }
-
-      .about-info {
-        list-style: none;
-        margin-bottom: 25px;
-      }
-
-      .about-info li {
-        margin-bottom: 10px;
-        font-size: 1rem;
-      }
-
-      .about-info strong {
-        color: #00ffff;
-        margin-right: 10px;
-      }
-
-      .about-buttons {
-        display: flex;
-        gap: 15px;
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 12px 25px;
-        background: #00ffff;
-        color: #0a0a0a;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background 0.3s ease, transform 0.3s ease;
-      }
-
-      .btn:hover {
-        background: #00cccc;
-        transform: scale(1.05);
-      }
-
-      .btn-alt {
-        background: transparent;
-        border: 2px solid #00ffff;
-        color: #00ffff;
-      }
-
-      .btn-alt:hover {
-        background: #00ffff;
-        color: #0a0a0a;
-      }
-
-            /* Services Section */
-      #services {
-       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
-          url("./images/service-bg2.png") no-repeat center center/cover;
-        text-align: center;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .services-intro {
-        max-width: 700px;
-        margin: 0 auto 50px;
-        color: #bbb;
-        line-height: 1.6;
-        font-size: 1.1rem;
-      }
-
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 25px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .service-card {
-        background: #1a1a1a;
-        padding: 30px 20px;
-        border-radius: 12px;
-        border: 2px solid transparent;
-        transition: all 0.4s ease;
-        cursor: pointer;
-      }
-
-      .service-card i {
-        font-size: 3rem;
-        margin-bottom: 15px;
-        color: #00ffff;
-        text-shadow: 0 0 3px #00ffff;
-      }
-
-      .service-card h3 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
-
-      .service-card p {
-        color: #aaa;
-        font-size: 0.95rem;
-        line-height: 1.5;
-      }
-
-      .service-card:hover {
-        border-color: #00ffff;
-        transform: translateY(-10px);
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-      }
-
-            /* Projects Section */
-      #projects {
-        background: #141414;
-        text-align: center;
-      }
-
-      .projects-intro {
-        max-width: 700px;
-        margin: 0 auto 50px;
-        color: #bbb;
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
-
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .project-card {
-        background: #1a1a1a;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 2px solid transparent;
-        transition: all 0.4s ease;
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-      }
-
-      .project-img img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .project-content {
-        padding: 20px;
-      }
-
-      .project-content h3 {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-      }
-
-      .project-content p {
-        font-size: 0.95rem;
-        color: #aaa;
-        margin-bottom: 15px;
-        line-height: 1.5;
-      }
-
-      .project-tech {
-        margin-bottom: 15px;
-      }
-
-      .project-tech i {
-        font-size: 1.2rem;
-        margin-right: 10px;
-        color: #00ffff;
-        text-shadow: 0 0 8px #00ffff;
-      }
-
-      .project-card:hover {
-        border-color: #00ffff;
-        transform: translateY(-10px);
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-      }
-
-            /* Project Modal */
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 2000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.8);
-        backdrop-filter: blur(5px);
-        justify-content: center;
-        align-items: center;
-      }
-
-      .modal-content {
-        background: #1a1a1a;
-        padding: 30px;
-        border-radius: 12px;
-        max-width: 600px;
-        width: 90%;
-        text-align: center;
-        border: 2px solid #00ffff;
-        box-shadow: 0 0 25px rgba(0,255,255,0.6);
-        animation: fadeSlide 0.6s ease;
-      }
-
-      .modal-content img {
-        width: 100%;
-        border-radius: 10px;
-        margin-bottom: 20px;
-      }
-
-      .modal-content h3 {
-        margin-bottom: 10px;
-        font-size: 1.6rem;
-      }
-
-      .modal-content p {
-        color: #bbb;
-        margin-bottom: 15px;
-        line-height: 1.6;
-      }
-
-      .modal .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 25px;
-        font-size: 2rem;
-        color: #fff;
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-
-      .modal .close-btn:hover {
-        color: #00ffff;
-      }
-
-      /* 📩 Contact Section */
-.contact {
-  padding: 80px 10%;
-  background: #0d0d0d;
-  color: #fff;
-  text-align: center;
-}
-
-.contact .section-title {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #00e6e6;
-}
-
-.contact .section-subtitle {
-  font-size: 1.1rem;
-  color: #bbb;
-  margin-bottom: 40px;
-}
-
-.contact-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
-  flex-wrap: wrap;
-}
-
-.contact-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  padding: 12px;
-  color: #fff;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #00e6e6;
-  box-shadow: 0 0 10px #00e6e6;
-}
-
-.contact-form .btn {
-  background: #00e6e6;
-  color: #111;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.contact-form .btn:hover {
-  background: #00cccc;
-  transform: scale(1.05);
-}
-
-.contact-info {
-  flex: 1;
-  text-align: left;
-}
-
-.contact-info p {
-  margin: 10px 0;
-  font-size: 1rem;
-}
-
-.contact-info i {
-  color: #00e6e6;
-  margin-right: 10px;
-}
-
-.social-icons {
-  margin-top: 20px;
-}
-
-.social-icons a {
-  display: inline-block;
-  margin: 0 10px;
-  font-size: 1.5rem;
-  color: #fff;
-  transition: 0.3s;
-}
-
-.social-icons a:hover {
-  color: #00e6e6;
-  transform: scale(1.2);
-}
-
-
-
-
-      /* Back to Top Button */
-      #backToTop {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: #0a0a0a;
-        border: 2px solid #00ffff;
-        border-radius: 50%;
-        width: 65px;
-        height: 65px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        display: none;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: pulseGlow 2s infinite ease-in-out;
-      }
-
-      #backToTop img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        filter: drop-shadow(0 0 8px #00ffff);
-      }
-
-      #backToTop:hover {
-        transform: scale(1.15) rotate(10deg);
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
-      }
-
-      /* Glowing Pulse Animation */
-      @keyframes pulseGlow {
-        0% {
-          box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-        }
-        50% {
-          box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
-        }
-        100% {
-          box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-        }
-      }
-/* ---------- Tablets (max-width: 992px) ---------- */
-@media (max-width: 992px) {
-  /* Hero Section */
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 100px 40px;
-  }
-
-  .hero img {
-    width: 80%;
-    margin-top: 30px;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  /* About Section */
-  .about-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
-  }
-
-  .about-content img {
-    width: 60%;
-    margin: 0 auto;
-  }
-
-  /* Services Section */
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-
-  /* Projects Section */
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-
-  /* Contact Section */
-  .contact-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .contact-form {
-    width: 80%;
-  }
-
-  /* Footer */
-  footer {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-}
-
-/* ---------- Mobile (max-width: 600px) ---------- */
-@media (max-width: 600px) {
-  /* General */
-  section {
-    padding: 60px 20px;
-  }
-
-  h2.section-title {
-    font-size: 1.8rem;
-  }
-
-  p.section-subtitle {
-    font-size: 1rem;
-  }
-
-  /* Hero */
-  .hero {
-    padding: 80px 20px;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .hero img {
-    width: 100%;
-  }
-
-  /* About */
-  .about-content img {
-    width: 80%;
-  }
-
-  .about-text {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  /* Services */
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    padding: 20px;
-  }
-
-  /* Projects */
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-card img {
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  /* Contact */
-  .contact-form {
-    width: 100%;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  .contact-form button {
-    width: 100%;
-  }
-
-  .contact-info {
-    width: 100%;
-    text-align: center;
-  }
-
-  .contact-info p {
-    font-size: 0.95rem;
-  }
-
-  .social-icons {
-    justify-content: center;
-    gap: 20px;
-  }
-
-  /* Footer */
-  footer {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  footer .social-icons {
-    justify-content: center;
-  }
-}
-
-    </style>
+    <link
+      rel="shortcut icon"
+      href="./images/Main-Logo.png"
+      type="image/x-icon"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <!-- Navbar -->
     <header class="transparent">
-  <div class="logo">
-    <a href="#home"><img src="./images/My logo.png" alt="Logo" style="width: 70px" /></a>
-  </div>
+      <div class="logo">
+        <a href="#home"
+          ><img src="./images/My logo.png" alt="Logo" style="width: 70px"
+        /></a>
+      </div>
 
-  <!-- Hamburger Icon -->
-  <div class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+      <!-- Hamburger Icon -->
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-  <nav id="navbar">
-    <a href="#home" class="active">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+      <nav id="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
     <!-- Hero -->
     <section id="home" class="hero-section">
@@ -936,14 +55,21 @@ header nav a:hover {
         <h1>Hello, I'm <span class="highlight">Dev King</span></h1>
         <p>A Passionate Web Developer</p>
         <div class="social-icons">
-          <a href="https://github.com/devking-sammy"><i class="fab fa-github"></i></a>
+          <a href="https://github.com/devking-sammy"
+            ><i class="fab fa-github"></i
+          ></a>
           <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="https://wa.me/2347079292865" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://wa.me/2347079292865" target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
         </div>
       </div>
       <div class="scroll-down">
         <span>Scroll Down</span>
-        <i class="fas fa-arrow-down" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})"></i>
+        <i
+          class="fas fa-arrow-down"
+          onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})"
+        ></i>
       </div>
     </section>
 
@@ -963,8 +89,8 @@ header nav a:hover {
           <p>
             Hi, I'm <span class="highlight">Dev King</span> — a passionate web
             developer who loves turning ideas into interactive digital
-            experiences. I build clean, modern, and responsive websites that focus
-            on both functionality and user experience.
+            experiences. I build clean, modern, and responsive websites that
+            focus on both functionality and user experience.
           </p>
 
           <ul class="about-info">
@@ -976,64 +102,85 @@ header nav a:hover {
 
           <div class="about-buttons">
             <a href="#projects" class="btn">See My Works</a>
-            <a href="./files/DevKingCV.pdf" download class="btn btn-alt">Download CV</a>
+            <a href="./files/DevKingCV.pdf" download class="btn btn-alt"
+              >Download CV</a
+            >
           </div>
         </div>
       </div>
     </section>
 
-         <!-- Services -->
+    <!-- Services -->
     <section id="services">
       <div class="services-container">
-        <h2 class="section-title">My <span class="highlight">Services</span></h2>
+        <h2 class="section-title">
+          My <span class="highlight">Services</span>
+        </h2>
         <p class="services-intro">
-          I specialize in building responsive, modern, and user-friendly websites
-          using the latest web technologies. From simple static pages to full-stack
-          applications, I create solutions that are clean, efficient, and scalable.
+          I specialize in building responsive, modern, and user-friendly
+          websites using the latest web technologies. From simple static pages
+          to full-stack applications, I create solutions that are clean,
+          efficient, and scalable.
         </p>
 
         <div class="services-grid">
           <div class="service-card">
             <i class="fab fa-html5"></i>
             <h3>HTML</h3>
-            <p>Clean, semantic, and accessible markup that forms the backbone of every project I build.</p>
+            <p>
+              Clean, semantic, and accessible markup that forms the backbone of
+              every project I build.
+            </p>
           </div>
 
           <div class="service-card">
             <i class="fab fa-css3-alt"></i>
             <h3>CSS</h3>
-            <p>Modern, responsive, and stylish designs with animations that bring websites to life.</p>
+            <p>
+              Modern, responsive, and stylish designs with animations that bring
+              websites to life.
+            </p>
           </div>
 
           <div class="service-card">
             <i class="fab fa-js"></i>
             <h3>JavaScript</h3>
-            <p>Interactive and dynamic web features with clean, optimized, and scalable code.</p>
+            <p>
+              Interactive and dynamic web features with clean, optimized, and
+              scalable code.
+            </p>
           </div>
 
           <div class="service-card">
             <i class="fab fa-react"></i>
             <h3>React</h3>
-            <p>Component-based architecture for building fast, reusable, and dynamic UIs.</p>
+            <p>
+              Component-based architecture for building fast, reusable, and
+              dynamic UIs.
+            </p>
           </div>
 
           <div class="service-card">
             <i class="fab fa-node-js"></i>
             <h3>Node / Next.js</h3>
-            <p>Powerful backend development and server-side rendering for full-stack applications.</p>
+            <p>
+              Powerful backend development and server-side rendering for
+              full-stack applications.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-
-     <!-- Projects -->
+    <!-- Projects -->
     <section id="projects">
       <div class="projects-container">
-        <h2 class="section-title">My <span class="highlight">Projects</span></h2>
+        <h2 class="section-title">
+          My <span class="highlight">Projects</span>
+        </h2>
         <p class="projects-intro">
-          Here are some of my recent works where I applied modern technologies to build
-          clean, scalable, and user-focused applications.
+          Here are some of my recent works where I applied modern technologies
+          to build clean, scalable, and user-focused applications.
         </p>
 
         <div class="projects-grid">
@@ -1044,15 +191,18 @@ header nav a:hover {
             </div>
             <div class="project-content">
               <h3>E-commerce Website</h3>
-              <p>A responsive full-stack online store built with React, Node, and MongoDB.
-                Still in progress.
+              <p>
+                A responsive full-stack online store built with React, Node, and
+                MongoDB. Still in progress.
               </p>
               <div class="project-tech">
                 <i class="fab fa-react"></i>
                 <i class="fab fa-node-js"></i>
                 <i class="fab fa-css3-alt"></i>
               </div>
-              <button class="btn btn-alt open-modal" data-project="1">View Project</button>
+              <button class="btn btn-alt open-modal" data-project="1">
+                View Project
+              </button>
             </div>
           </div>
 
@@ -1063,13 +213,18 @@ header nav a:hover {
             </div>
             <div class="project-content">
               <h3>Trailer Streaming website</h3>
-              <p>A sleek and modern Streaming website showcasing my work and skills.</p>
+              <p>
+                A sleek and modern Streaming website showcasing my work and
+                skills.
+              </p>
               <div class="project-tech">
                 <i class="fab fa-html5"></i>
                 <i class="fab fa-css3-alt"></i>
                 <i class="fab fa-js"></i>
               </div>
-              <button class="btn btn-alt open-modal" data-project="2">View Project</button>
+              <button class="btn btn-alt open-modal" data-project="2">
+                View Project
+              </button>
             </div>
           </div>
 
@@ -1080,12 +235,17 @@ header nav a:hover {
             </div>
             <div class="project-content">
               <h3>Digital Ocean</h3>
-              <p>This is a Cloned website, this project was to test my skill at a beginner level</p>
+              <p>
+                This is a Cloned website, this project was to test my skill at a
+                beginner level
+              </p>
               <div class="project-tech">
                 <i class="fab fa-html5"></i>
                 <i class="fab fa-css3-alt"></i>
               </div>
-              <button class="btn btn-alt open-modal" data-project="3">View Project</button>
+              <button class="btn btn-alt open-modal" data-project="3">
+                View Project
+              </button>
             </div>
           </div>
         </div>
@@ -1104,194 +264,61 @@ header nav a:hover {
       </div>
     </div>
 
+    <!-- 📩 Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="section-subtitle">
+          Let’s work together on something amazing!
+        </p>
 
+        <div class="contact-content">
+          <!-- Contact Form -->
+          <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+            <input type="text" name="subject" placeholder="Subject" />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="5"
+              required
+            ></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
 
-<!-- 📩 Contact Section -->
-<section id="contact" class="contact">
-  <div class="container">
-    <h2 class="section-title">Contact Me</h2>
-    <p class="section-subtitle">Let’s work together on something amazing!</p>
-
-    <div class="contact-content">
-      <!-- Contact Form -->
-      <form class="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="text" name="subject" placeholder="Subject">
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-      
-
-      <!-- Contact Info -->
-      <div class="contact-info">
-        <p><i class="fas fa-envelope"></i> oluwaseunabass267@gmail.com</p>
-        <p><i class="fas fa-map-marker-alt"></i>Ibadan, Nigeria</p>
-        <div class="social-icons">
-          <a href="https://github.com/devking-sammy"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://wa.me/2347079292865" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> oluwaseunabass267@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i>Ibadan, Nigeria</p>
+            <div class="social-icons">
+              <a href="https://github.com/devking-sammy"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="https://linkedin.com/" target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://wa.me/2347079292865" target="_blank"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-
-
+    </section>
 
     <!-- Back to Top -->
     <button id="backToTop">
       <img src="./images/Main-Logo.png" alt="Back to Top" />
     </button>
 
-    <script>
-      const header = document.querySelector("header");
-      const navLinks = document.querySelectorAll("header nav a");
-      const sections = document.querySelectorAll("section");
-
-      // Navbar background + active link highlight
-      window.addEventListener("scroll", () => {
-        header.classList.toggle("scrolled", window.scrollY > 50);
-
-        let fromTop = window.scrollY + 70;
-        navLinks.forEach((link) => {
-          let section = document.querySelector(link.getAttribute("href"));
-          if (
-            section.offsetTop <= fromTop &&
-            section.offsetTop + section.offsetHeight > fromTop
-          ) {
-            navLinks.forEach((l) => l.classList.remove("active"));
-            link.classList.add("active");
-          }
-        });
-      });
-
-      // Back to top button
-      const backToTop = document.getElementById("backToTop");
-      window.addEventListener("scroll", () => {
-        backToTop.style.display = window.scrollY > 300 ? "flex" : "none";
-      });
-      backToTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      // Smooth scroll with fade-in effect on nav click
-      navLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute("href");
-          const targetSection = document.querySelector(targetId);
-
-          sections.forEach((sec) => sec.classList.remove("fade-in"));
-          targetSection.classList.add("fade-in");
-
-          window.scrollTo({
-            top: targetSection.offsetTop - 50,
-            behavior: "smooth",
-          });
-        });
-      });
-
-      // Reveal sections on scroll
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
-
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
-
-            // Project Modal Logic
-      const modal = document.getElementById("projectModal");
-      const modalImg = document.getElementById("modal-img");
-      const modalTitle = document.getElementById("modal-title");
-      const modalDesc = document.getElementById("modal-desc");
-      const modalTech = document.getElementById("modal-tech");
-      const modalLink = document.getElementById("modal-link");
-      const closeBtn = document.querySelector(".close-btn");
-
-      const projectData = {
-        1: {
-          img: "./images/E-commerce-img.png",
-          title: "E-commerce Website",
-          desc: "A responsive full-stack online store built with React, Node, and MongoDB. Still in progress.",
-          tech: ["fab fa-react", "fab fa-node-js", "fab fa-css3-alt"],
-          link: "https://buybytes.vercel.app/"
-        },
-        2: {
-          img: "./images/Streaming Website.png",
-          title: "Trailer Streaming website",
-          desc: "A sleek and modern Streaming website showcasing my work and skills.",
-          tech: ["fab fa-html5", "fab fa-css3-alt", "fab fa-js"],
-          link: "https://javaproject-zeta.vercel.app/"
-        },
-        3: {
-          img: "./images/Cloned Webite.png",
-          title: "Digital Ocean",
-          desc: "This is a Cloned website, this project was to test my skill at a beginner level",
-          tech: ["fab fa-html5", "fab fa-css3-alt"],
-          link: "https://myproject-beryl-one.vercel.app/"
-        }
-      };
-
-      document.querySelectorAll(".open-modal").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-project");
-          const project = projectData[id];
-
-          modalImg.src = project.img;
-          modalTitle.textContent = project.title;
-          modalDesc.textContent = project.desc;
-          modalTech.innerHTML = project.tech.map(icon => `<i class="${icon}"></i>`).join(" ");
-          modalLink.href = project.link;
-
-          modal.style.display = "flex";
-        });
-      });
-
-      closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
-
-      window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-
-
-
-    const menuToggle = document.getElementById("menuToggle");
-  const navbar = document.getElementById("navbar");
-  
-
-  // Toggle menu open/close
-  menuToggle.addEventListener("click", () => {
-    menuToggle.classList.toggle("active");
-    navbar.classList.toggle("show");
-  });
-
-  // Close menu when a link is clicked
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      navbar.classList.remove("show");
-      menuToggle.classList.remove("active");
-    });
-  });
-
-  // Navbar background change on scroll
-  
-  window.addEventListener("scroll", () => {
-    header.classList.toggle("scrolled", window.scrollY > 50);
-  });
+    <script src="./script.js">
+      
     </script>
   </body>
 </html>
