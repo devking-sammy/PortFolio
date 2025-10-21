@@ -92,6 +92,13 @@ const header = document.querySelector("header");
           tech: ["fab fa-html5", "fab fa-css3-alt"],
           link: "https://myproject-beryl-one.vercel.app/",
         },
+        4: {
+          img: "./images/weather-app.png",
+          title: "Weather-App",
+          desc: "This is a weather app that shows the weather of any location searched by the user.",
+          tech: ["fab fa-react", "fab fa-css3-alt"],
+          link: "https://weather-flame-seven-46.vercel.app/",
+        },
       };
 
       document.querySelectorAll(".open-modal").forEach((btn) => {
