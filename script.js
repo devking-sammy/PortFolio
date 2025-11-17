@@ -99,6 +99,14 @@ const header = document.querySelector("header");
           tech: ["fab fa-react", "fab fa-css3-alt"],
           link: "https://weather-flame-seven-46.vercel.app/",
         },
+
+        5: {
+          img: "./images/StreamVerse Pro.png",
+          title: "StreamVerse Upgraded",
+          desc: "A modern streaming platform built with React, Tailwind and Firebase for seamless user experience.",
+          tech: ["fab fa-react", "fab fa-css3-alt", "fas fa-fire"],
+          link: "https://stream-verse-phi.vercel.app/",
+        },
       };
 
       document.querySelectorAll(".open-modal").forEach((btn) => {
