@@ -97,7 +97,7 @@ const header = document.querySelector("header");
           title: "Weather-App",
           desc: "This is a weather app that shows the weather of any location searched by the user.",
           tech: ["fab fa-react", "fab fa-css3-alt"],
-          link: "https://weather-flame-seven-46.vercel.app/",
+          link: "https://sky-pulse-nine.vercel.app/",
         },
 
         5: {
