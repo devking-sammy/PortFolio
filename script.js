@@ -105,7 +105,7 @@ const header = document.querySelector("header");
           title: "StreamVerse Upgraded",
           desc: "A modern streaming platform built with React, Tailwind and Firebase for seamless user experience.",
           tech: ["fab fa-react", "fab fa-css3-alt", "fas fa-fire"],
-          link: "https://stream-verse-phi.vercel.app/",
+          link: "https://stream-verse-five.vercel.app/",
         },
       };
 
